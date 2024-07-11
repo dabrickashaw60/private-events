@@ -1,0 +1,8 @@
+<!-- app/views/events/show.html.erb -->
+<h1><%= @event.name %></h1>
+
+<p><strong>Date:</strong> <%= @event.date.strftime('%B %d, %Y %I:%M %p') %></p>
+
+<p><strong>Location:</strong> <%= @event.location %></p>
+
+<%= link_to 'Back', events_path %>
