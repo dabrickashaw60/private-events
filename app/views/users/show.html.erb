@@ -8,10 +8,10 @@
   <% end %>
 </ul>
 
-<h2>Attended Events</h2>
-  <% if @attended_events.any? %>
+<h2>Upcoming Events</h2>
+  <% if @upcoming_events.any? %>
     <ul>
-      <% @attended_events.each do |event| %>
+      <% @upcoming_events.each do |event| %>
         <li>
           <strong><%= event.name %></strong><br>
           Date: <%= event.date.strftime('%B %d, %Y') %><br>
@@ -20,5 +20,20 @@
       <% end %>
     </ul>
   <% else %>
-    <p>This user has not attended any events yet.</p>
+    <p>No upcoming events.</p>
+  <% end %>
+
+  <h2>Past Events</h2>
+  <% if @past_events.any? %>
+    <ul>
+      <% @past_events.each do |event| %>
+        <li>
+          <strong><%= event.name %></strong><br>
+          Date: <%= event.date.strftime('%B %d, %Y') %><br>
+          Location: <%= event.location %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No past events.</p>
   <% end %>

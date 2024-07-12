@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   devise_for :users
   resources :events
   resources :users, only: [:show]
+  resources :events do  
+    member do
+        post 'attend'
+        delete 'unattend'
+      end
+    end
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'

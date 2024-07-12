@@ -17,10 +17,10 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <h1>My Events App</h1>
-        </div>
-        <div class="col-md-6">
           <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <%= link_to 'Home', root_path %>
+            </li>
             <li class="nav-item">
               <% if user_signed_in? %>
                 <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
