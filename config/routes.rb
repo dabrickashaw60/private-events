@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :events
-  resources :users, only: [:show]
+  resources :users, only: [:show, :destroy]
   resources :events do  
     member do
         post 'attend'

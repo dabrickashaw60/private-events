@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_event, only: [:destroy]
   def index
     @past_events = Event.past
     @upcoming_events = Event.upcoming
@@ -42,7 +43,23 @@ class EventsController < ApplicationController
     redirect_to @event, notice: "You have successfully unRSVPed from the event."
   end
 
+  def destroy
+    if @event && current_user == @event.creator
+      @event.destroy
+      redirect_to events_url, notice: 'Event was successfully deleted.'
+    else
+      redirect_to event_path(@event), alert: 'You are not authorized to delete this event.'
+    end
+  end
+
   private
+
+  def set_event
+    @event = Event.find_by(id: params[:id])
+    unless @event
+      redirect_to events_url, alert: 'Event not found.'
+    end
+  end
 
   def event_params
     params.require(:event).permit(:name, :date, :location)

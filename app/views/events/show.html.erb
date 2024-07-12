@@ -26,4 +26,9 @@
     <p><%= link_to 'Sign in', new_user_session_path %> to RSVP to this event.</p>
   <% end %>
 
+  <% if user_signed_in? && current_user == @event.creator %> <!-- Check if user is signed in and is the creator -->
+  <%= link_to 'Edit Event', edit_event_path(@event) %>
+  <%= link_to 'Delete Event', event_path(@event), method: :delete, data: { "turbo-method": :delete } %>
+<% end %>
+
 </div>
